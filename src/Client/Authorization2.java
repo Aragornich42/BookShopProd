@@ -7,19 +7,14 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Authorization2 extends JFrame {
+class Authorization2 extends JFrame {
 
-    private JTextField authField = new JTextField();
-    private JButton authButton = new JButton("Вход");
-    private JButton registButton = new JButton("Регистрация");
-    private JLabel labelAuth = new JLabel("Введите email для входа, пожалуйста:");
-    private JLabel labelReg = new JLabel("Если Вы здесь впервые, зарегистрируйтесь:");
-    private JPanel authFrame = new JPanel(null);
+    private final JTextField authField = new JTextField();
     private String fullName;
     private String address;
-    private Socket server = new Socket("localhost", 8080);
-    private DataInputStream dis = new DataInputStream(server.getInputStream());
-    private DataOutputStream dos = new DataOutputStream(server.getOutputStream());
+    private final Socket server = new Socket("localhost", 8080);
+    private final DataInputStream dis = new DataInputStream(server.getInputStream());
+    private final DataOutputStream dos = new DataOutputStream(server.getOutputStream());
 
     public Authorization2() throws IOException {
         super("Authorization");
@@ -28,11 +23,16 @@ public class Authorization2 extends JFrame {
         setSize(545, 230);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        JLabel labelAuth = new JLabel("Введите email для входа, пожалуйста:");
         labelAuth.setBounds(15, 15, 500, 20);
         authField.setBounds(15, 50, 500, 20);
+        JButton authButton = new JButton("Вход");
         authButton.setBounds(15, 85, 500,20);
+        JLabel labelReg = new JLabel("Если Вы здесь впервые, зарегистрируйтесь:");
         labelReg.setBounds(15, 120, 500, 20);
+        JButton registButton = new JButton("Регистрация");
         registButton.setBounds(15, 155, 500, 20);
+        JPanel authFrame = new JPanel(null);
         authFrame.setBounds(0,0, 530, 170);
 
         authFrame.add(authField);

@@ -1,6 +1,6 @@
 package Server;
 
-public interface WorkWithBaseClasses {
+interface WorkWithBaseClasses {
 	
 	String[] Parser(String prsStr);
 	

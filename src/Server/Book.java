@@ -8,16 +8,32 @@ public class Book implements WorkWithBaseClasses {
 	private String name;
 	private String authors;
 	private String genre;
-	private String info;
+		private String info;
+	private String publisher;
+	private int year;
+	private int pages;
+	private String cover;
 	private String price;
 	private String count;
-	
+
+	public String getInfo() {
+		return info;
+	}
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
 	public Book() {
 		id = 0;
 		name = "";
 		authors = "";
 		genre = "";
-		info = "";
+			info = "";
+		publisher = "";
+		year = 0;
+		pages = 0;
+		cover = "";
 		price = "";
 		count = "";
 	}
@@ -53,13 +69,37 @@ public class Book implements WorkWithBaseClasses {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	
-	public String getInfo() {
-		return info;
+
+	public String getPublisher() {
+		return publisher;
 	}
-	
-	public void setInfo(String info) {
-		this.info = info;
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public int getPages() {
+		return pages;
+	}
+
+	public void setPages(int pages) {
+		this.pages = pages;
+	}
+
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 	
 	public String getPrice() {
@@ -77,7 +117,7 @@ public class Book implements WorkWithBaseClasses {
 	public void setCount(String count) {
 		this.count = count;
 	}
-
+	//TODO: Когда освою json, надо будет изменить конструктор. Не исключено, что перегруженный конструктор не нужен.
 	@Override
 	public String[] Parser(String prsStr) {
 		return prsStr.split(Pattern.quote("|"));

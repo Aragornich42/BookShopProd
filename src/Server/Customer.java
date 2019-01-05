@@ -6,16 +6,26 @@ public class Customer implements WorkWithBaseClasses {
 
 	private int id;
 	private String fullName;
-	private String contacts;
+		private String contacts;
+	private  String region;
+	private String house;
+	private String flat;
+	private String phone;
+	private String email;
 	private String orders;
 	
 	public Customer() {
 		id = 0;
 		fullName = "";
-		contacts = "";
+			contacts = "";
+		region = "";
+		house = "";
+		flat = "";
+		phone = "";
+		email = "";
 		orders = "";
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -39,6 +49,46 @@ public class Customer implements WorkWithBaseClasses {
 	public void setContacts(String contacts) {
 		this.contacts = contacts;
 	}
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
+	public String getHouse() {
+		return house;
+	}
+
+	public void setHouse(String house) {
+		this.house = house;
+	}
+
+	public String getFlat() {
+		return flat;
+	}
+
+	public void setFlat(String flat) {
+		this.flat = flat;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 	public String getOrders() {
 		return orders;
@@ -47,7 +97,7 @@ public class Customer implements WorkWithBaseClasses {
 	public void setOrders(String orders) {
 		this.orders = orders;
 	}
-
+	//TODO:
 	@Override
 	public String[] Parser(String prsStr) {
 		return prsStr.split(Pattern.quote("|"));

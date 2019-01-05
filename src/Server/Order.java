@@ -5,11 +5,11 @@ import java.util.regex.Pattern;
 public class Order implements WorkWithBaseClasses {
 
 	private int id;
-	private String date;
+	private String date; 	//TODO: Обязательно обмозговать работу с датой
 	private String fullName;
 	private String orderAndPrice;
 	private String contacts;
-	private String time;
+	private String time; 	//TODO: Обмозговать время
 	private String status;
 	
 	public Order() {

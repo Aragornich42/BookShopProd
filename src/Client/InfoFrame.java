@@ -2,14 +2,8 @@ package Client;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class InfoFrame extends JFrame {
-
-    private JPanel panel = new JPanel(null);
-    private JTextArea textArea = new JTextArea();
-    private JButton button = new JButton("Закрыть окно");
+class InfoFrame extends JFrame {
 
     public  InfoFrame(String info) {
         super("InfoFrame");
@@ -17,8 +11,11 @@ public class InfoFrame extends JFrame {
         setSize(645, 325);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        JTextArea textArea = new JTextArea();
         textArea.setBounds(15, 15, 600, 200);
+        JButton button = new JButton("Закрыть окно");
         button.setBounds(15, 230, 600, 20);
+        JPanel panel = new JPanel(null);
         panel.setBounds(0, 0, 630, 265);
 
         JScrollPane scrollPane = new JScrollPane(textArea);
@@ -32,12 +29,9 @@ public class InfoFrame extends JFrame {
 
         textArea.setText(info);
 
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                dispose();
-            }
+        button.addActionListener(e -> {
+            setVisible(false);
+            dispose();
         });
     }
 

@@ -7,22 +7,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Operations2 extends JFrame {
-
-    private JButton ADDO = new JButton("Добавить заказ");
-    private JButton ADDB = new JButton("Добавить книгу");
-    private JButton DELB = new JButton("Удалить книгу");
-    private JButton DELC = new JButton("Удалить пользователя");
-    private JButton CHAB = new JButton("Изменить данные по книге");
-    private JButton CHAC = new JButton("Изменить данные по клиенту");
-    private JButton CHEST = new JButton("Проверить статус заказа");
-    private JButton CHAST = new JButton("Изменить статус заказа");
-    private JButton CHEB = new JButton("Получить список книг");
-    private JButton END = new JButton("Завершить работу");
-    private JButton LISTB = new JButton("Вывести список книг");
-    private JButton LISTC = new JButton("Вывести список клиентов");
-    private JButton LISTO = new JButton("Вывести список заказов");
-    private JPanel panel = new JPanel(null);
+class Operations2 extends JFrame {
 
     public Operations2(DataInputStream dis, DataOutputStream dos, String fullName, String address, Socket server) {
         super("Operations");
@@ -30,19 +15,33 @@ public class Operations2 extends JFrame {
         setSize(545, 525);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        JButton ADDO = new JButton("Добавить заказ");
         ADDO.setBounds(15, 15, 500, 20);
+        JButton ADDB = new JButton("Добавить книгу");
         ADDB.setBounds(15, 50, 500, 20);
+        JButton DELB = new JButton("Удалить книгу");
         DELB.setBounds(15, 85, 500,20);
+        JButton DELC = new JButton("Удалить пользователя");
         DELC.setBounds(15, 120, 500, 20);
+        JButton CHAB = new JButton("Изменить данные по книге");
         CHAB.setBounds(15, 155, 500, 20);
+        JButton CHAC = new JButton("Изменить данные по клиенту");
         CHAC.setBounds(15, 190, 500, 20);
+        JButton CHEST = new JButton("Проверить статус заказа");
         CHEST.setBounds(15, 225, 500, 20);
+        JButton CHAST = new JButton("Изменить статус заказа");
         CHAST.setBounds(15, 260, 500, 20);
+        JButton CHEB = new JButton("Получить список книг");
         CHEB.setBounds(15, 295, 500, 20);
+        JButton END = new JButton("Завершить работу");
         END.setBounds(15, 330, 500, 20);
+        JButton LISTB = new JButton("Вывести список книг");
         LISTB.setBounds(15, 365, 500, 20);
+        JButton LISTC = new JButton("Вывести список клиентов");
         LISTC.setBounds(15, 400, 500, 20);
+        JButton LISTO = new JButton("Вывести список заказов");
         LISTO.setBounds(15, 435, 500, 20);
+        JPanel panel = new JPanel(null);
         panel.setBounds(0,0, 530, 465);
 
         panel.add(ADDO);
@@ -63,9 +62,9 @@ public class Operations2 extends JFrame {
 
         setVisible(true);
 
-        ADDO.addActionListener(e -> new ADDO2(dis, dos, fullName, address, server));
+        ADDO.addActionListener(e -> new ADDO2(dis, dos, fullName, address));
 
-        ADDB.addActionListener(e -> new ADDB2(dis, dos, server));
+        ADDB.addActionListener(e -> new ADDB2(dis, dos));
 
         DELB.addActionListener(e -> {
             String tmp = JOptionPane.showInputDialog(new JFrame(), "Введите название книги:");
@@ -105,9 +104,9 @@ public class Operations2 extends JFrame {
             }
         });
 
-        CHAB.addActionListener(e -> new CHAB2(dis, dos, server));
+        CHAB.addActionListener(e -> new CHAB2(dis, dos));
 
-        CHAC.addActionListener(e -> new CHAC2(dis, dos, server));
+        CHAC.addActionListener(e -> new CHAC2(dis, dos));
 
         CHEST.addActionListener(e -> {
             String tmp = JOptionPane.showInputDialog(new JFrame(), "Введите ФИО заказчика:");
@@ -128,9 +127,9 @@ public class Operations2 extends JFrame {
             }
         });
 
-        CHAST.addActionListener(e -> new CHAST2(dis, dos, server));
+        CHAST.addActionListener(e -> new CHAST2(dis, dos));
 
-        CHEB.addActionListener(e -> new CHEB2(dis, dos, server));
+        CHEB.addActionListener(e -> new CHEB2(dis, dos));
 
         END.addActionListener(e -> {
             try {

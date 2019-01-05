@@ -5,44 +5,44 @@ import java.awt.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
+import java.util.Objects;
 import java.util.Vector;
 
-public class CHAC2 extends JFrame {
+class CHAC2 extends JFrame {
 
-    private JComboBox comboBox1;
-    private JTextField textField1 = new JTextField();
-    private JButton inpButton = new JButton("Ввод");
-    private JTextField textField2 = new JTextField();
-    private JPanel panel = new JPanel(null);
-    private JLabel l1 = new JLabel("Выберите тип данных, необходимый для изменения, и затем введите новое значение.");
-    private JLabel l2 = new JLabel("Выберите тип данных");
-    private JLabel l3 = new JLabel("Введите искомое");
-    private JLabel l4 = new JLabel("Введите значение");
-    private Vector<String> items = new Vector<>();
+    private final JComboBox<String> comboBox1;
+    private final JTextField textField1 = new JTextField();
+    private final JTextField textField2 = new JTextField();
 
-    public CHAC2(DataInputStream dis, DataOutputStream dos, Socket server) {
+    public CHAC2(DataInputStream dis, DataOutputStream dos) {
         super("Change customer");
         setLayout(new BorderLayout());
         setSize(700, 230);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        Vector<String> items = new Vector<>();
         items.add("ФИО");
         items.add("Адрес");
         items.add("Телефон");
         items.add("email");
         items.add("Заказы(изменить целиком)");
         items.add("Заказы(добавить)");
-        comboBox1 = new JComboBox(items);
+        comboBox1 = new JComboBox<>(items);
 
+        JLabel l1 = new JLabel("Выберите тип данных, необходимый для изменения, и затем введите новое значение.");
         l1.setBounds(15, 15, 570, 20);
+        JLabel l2 = new JLabel("Выберите тип данных");
         l2.setBounds(15, 50, 150, 20);
         comboBox1.setBounds(170, 50, 500, 20);
+        JLabel l3 = new JLabel("Введите искомое");
         l3.setBounds(15, 85, 150,20);
         textField1.setBounds(170, 85, 500,20);
+        JLabel l4 = new JLabel("Введите значение");
         l4.setBounds(15, 120, 150, 20);
         textField2.setBounds(170, 120, 500, 20);
+        JButton inpButton = new JButton("Ввод");
         inpButton.setBounds(15, 155, 660, 20);
+        JPanel panel = new JPanel(null);
         panel.setBounds(0,0,685,170);
 
         panel.add(comboBox1);
@@ -61,7 +61,7 @@ public class CHAC2 extends JFrame {
         inpButton.addActionListener(e -> {
             try {
                 dos.writeUTF("CHAC");
-                switch ((String) comboBox1.getSelectedItem()) {
+                switch ((String) Objects.requireNonNull(comboBox1.getSelectedItem())) {
                     case "ФИО":
                         dos.writeUTF(getInfo("NAME"));
                         break;
@@ -90,7 +90,7 @@ public class CHAC2 extends JFrame {
         });
     }
 
-    public String getInfo(String code) {
+    private String getInfo(String code) {
         return textField1.getText() + "|" + code + "|" + textField2.getText();
     }
 

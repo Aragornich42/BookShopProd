@@ -6,10 +6,11 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Objects;
 import java.util.Vector;
 import java.util.regex.Pattern;
 
-public class MainServer {
+class MainServer {
 	
 	private static Vector<Book> books;
 	private static Vector<Customer> customers;
@@ -26,7 +27,7 @@ public class MainServer {
 		}
 	}
 
-	public static Customer FindCust(String name) {
+	private static Customer FindCust(String name) {
 		int i = 0;
 		while(true) {
 			if(customers.elementAt(i).getFullName().equals(name))
@@ -37,7 +38,7 @@ public class MainServer {
 		}
 	}
 
-	public static String[] FindCustEmail(String email) {
+	private static String[] FindCustEmail(String email) {
 		String[] tmp = new String[2];
 		int i = 0;
 		while(true) {
@@ -52,32 +53,32 @@ public class MainServer {
 		}
 	}
 
-	public static String CheckPrice(String name, String count) {
+	private static String CheckPrice(String name, String count) {
 		Book b = FindBook(name);
-		double d = Double.parseDouble(b.getPrice()) * Double.parseDouble(count);
+		double d = Double.parseDouble(Objects.requireNonNull(b).getPrice()) * Double.parseDouble(count);
 		return String.valueOf(d);
 	}
 	
-	public static String[] ServerOwnParser(String info) {
+	private static String[] ServerOwnParser(String info) {
 		return info.split(Pattern.quote("|"));
 	}
 
-	public static String BooksString() {
-		String tmp = "";
-		for (Book book : books) tmp += book.BookToString();
-		return tmp;
+	private static String BooksString() {
+		StringBuilder tmp = new StringBuilder();
+		for (Book book : books) tmp.append(book.BookToString());
+		return tmp.toString();
 	}
 
-	public static String CustomersString() {
-		String tmp = "";
-		for (Customer customer : customers) tmp += customer.CustomerToString();
-		return tmp;
+	private static String CustomersString() {
+		StringBuilder tmp = new StringBuilder();
+		for (Customer customer : customers) tmp.append(customer.CustomerToString());
+		return tmp.toString();
 	}
 
-	public static String OrdersString() {
-		String tmp = "";
-		for (Order order : orders) tmp += order.OrderToString();
-		return tmp;
+	private static String OrdersString() {
+		StringBuilder tmp = new StringBuilder();
+		for (Order order : orders) tmp.append(order.OrderToString());
+		return tmp.toString();
 	}
 	
 	public static void main(String[] args) {
@@ -206,11 +207,9 @@ public class MainServer {
 								printWr.writeUTF("User not found");
 							printWr.flush();
 						default:
-							continue;
-						}
-					} catch (EOFException e) {
-						continue;
 					}
+					} catch (EOFException ignored) {
+				}
 				}
 
 

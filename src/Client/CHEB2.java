@@ -5,26 +5,21 @@ import java.awt.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
+import java.util.Objects;
 import java.util.Vector;
 
-public class CHEB2 extends JFrame {
+class CHEB2 extends JFrame {
 
-    private JComboBox comboBox1;
-    private JTextField textField1 = new JTextField();
-    private JButton inpButton = new JButton("Ввод");
-    private JPanel panel = new JPanel(null);
-    private JLabel l1 = new JLabel("Выберите тип данных, необходимый для поиска, и затем введите значение для поиска.");
-    private JLabel l2 = new JLabel("Выберите тип данных");
-    private JLabel l3 = new JLabel("Введите значение");
-    private Vector<String> items = new Vector<>();
+    private final JComboBox<String> comboBox1;
+    private final JTextField textField1 = new JTextField();
 
-    public CHEB2(DataInputStream dis, DataOutputStream dos, Socket server) {
+    public CHEB2(DataInputStream dis, DataOutputStream dos) {
         super("Check books");
         setLayout(new BorderLayout());
         setSize(700, 195);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        Vector<String> items = new Vector<>();
         items.add("id");
         items.add("Название");
         items.add("Автор(ы)");
@@ -35,14 +30,19 @@ public class CHEB2 extends JFrame {
         items.add("Цена");
         items.add("Количество");
         items.add("Жанр");
-        comboBox1 = new JComboBox(items);
+        comboBox1 = new JComboBox<>(items);
 
+        JLabel l1 = new JLabel("Выберите тип данных, необходимый для поиска, и затем введите значение для поиска.");
         l1.setBounds(15, 15, 570, 20);
+        JLabel l2 = new JLabel("Выберите тип данных");
         l2.setBounds(15, 50, 150, 20);
         comboBox1.setBounds(170, 50, 500, 20);
+        JLabel l3 = new JLabel("Введите значение");
         l3.setBounds(15, 85, 150,20);
         textField1.setBounds(170, 85, 500,20);
+        JButton inpButton = new JButton("Ввод");
         inpButton.setBounds(15, 120, 660, 20);
+        JPanel panel = new JPanel(null);
         panel.setBounds(0,0,685,135);
 
         panel.add(comboBox1);
@@ -59,7 +59,7 @@ public class CHEB2 extends JFrame {
         inpButton.addActionListener(e -> {
             try {
                 dos.writeUTF("CHEB");
-                switch ((String) comboBox1.getSelectedItem()) {
+                switch ((String) Objects.requireNonNull(comboBox1.getSelectedItem())) {
                     case "id":
                         dos.writeUTF(getInfo("ID"));
                         break;
@@ -100,7 +100,7 @@ public class CHEB2 extends JFrame {
         });
     }
 
-    public String getInfo(String code) {
+    private String getInfo(String code) {
         return code + "|" + textField1.getText();
     }
 

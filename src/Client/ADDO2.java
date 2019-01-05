@@ -5,44 +5,43 @@ import java.awt.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ADDO2 extends JFrame {
+class ADDO2 extends JFrame {
 
-    private JTextField textField1 = new JTextField();
-    private JTextField textField2 = new JTextField();
-    private JTextField textField3 = new JTextField();
-    private JTextField textField4 = new JTextField();
-    private JTextField textField5 = new JTextField();
-    private JButton inpButton = new JButton("Ввод");
-    private JPanel panel = new JPanel(null);
-    private JLabel l1 = new JLabel("Название книги");
-    private JLabel l2 = new JLabel("Автор");
-    private JLabel l3 = new JLabel("Количество экземляров");
-    private JLabel l4 = new JLabel("Удобное время получения");
-    private JLabel l5 = new JLabel(":");
-    private String fullName;
-    private String address;
+    private final JTextField textField1 = new JTextField();
+    private final JTextField textField2 = new JTextField();
+    private final JTextField textField3 = new JTextField();
+    private final JTextField textField4 = new JTextField();
+    private final JTextField textField5 = new JTextField();
+    private final String fullName;
+    private final String address;
 
-    public ADDO2(DataInputStream dis, DataOutputStream dos, String fullName, String address, Socket server) {
+    public ADDO2(DataInputStream dis, DataOutputStream dos, String fullName, String address) {
         super("Add order");
         setLayout(new BorderLayout());
         setSize(700, 230);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        JLabel l1 = new JLabel("Название книги");
         l1.setBounds(15, 15, 150, 20);
         textField1.setBounds(170, 15, 500, 20);
+        JLabel l2 = new JLabel("Автор");
         l2.setBounds(15, 50, 150, 20);
         textField2.setBounds(170, 50, 500, 20);
+        JLabel l3 = new JLabel("Количество экземляров");
         l3.setBounds(15, 85, 150,20);
         textField3.setBounds(170, 85, 500,20);
+        JLabel l4 = new JLabel("Удобное время получения");
         l4.setBounds(15, 120, 160, 20);
         textField4.setBounds(180, 120, 240, 20);
+        JLabel l5 = new JLabel(":");
         l5.setBounds(423, 120, 4, 20);
         textField5.setBounds(430, 120, 240, 20);
+        JButton inpButton = new JButton("Ввод");
         inpButton.setBounds(15, 155, 660, 20);
+        JPanel panel = new JPanel(null);
         panel.setBounds(0,0,685,170);
 
         panel.add(textField1);
@@ -79,7 +78,7 @@ public class ADDO2 extends JFrame {
         });
     }
 
-    public String getInfo() {
+    private String getInfo() {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         String tmp = format.format(new Date());
         tmp += "|" + fullName + "|\"" + textField1.getText() + "\" " + textField2.getText() + ", "
