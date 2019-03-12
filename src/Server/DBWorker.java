@@ -6,6 +6,7 @@ class DBWorker {
 
 	//SPECIFICATION - NAME, AUTHOR, GENRE, PUBLISH, DATE, PAGES,
 	//COVER, PRICE, COUNT
+	//Должен выдать те книги, которые совпадают по определенным критериям.
 	public String CheckBooks(Vector<Book> books, String SPECIFICATION, String value) {
 		StringBuilder result = new StringBuilder("\n\n");
 		switch(SPECIFICATION) {
